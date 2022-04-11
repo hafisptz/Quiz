@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Talent View</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{% static 'css/templatemo-style.css' %}"  rel="stylesheet" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+</head>
+<body>
+	
+	<center>
+		<div style="background-color:#dc4f33;height: 250px;width: 300px;margin-top: 180px;padding-top: 40px; color:white;">
+			<font color="white">
+	Candidate Name: {{quiz_record.user.username}}<br>
+	Test Name: {{quiz.name}}<br>
+	Obtained Mark: {{quiz_record.marks}}<br>
+	Total Mark: {{quiz.total_mark}}<br>
+	Test Result: {% if quiz_record.result %}
+					PASS
+					{% else%}
+					FAIL
+					{% endif %}<br><br>
+					
+	<a href="{% url 'home' %}"><btn class="btn btn-primary">Try Another</btn></a>
+
+</font>
+</div>
+
+
+	</center>
+
+</body>
+</html>

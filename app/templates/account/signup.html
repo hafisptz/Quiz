@@ -1,0 +1,67 @@
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Signup
+</title>
+ <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tooplate-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<!-- Pre Header -->
+    <div id="pre-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <span>It ain't that I'm questionin' you. To take part in any quiz.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+      <div class="container">
+        <center>
+        
+        <a  href="#"><img src="{% static 'images/R1.jpg' %}" alt="logo" height="80"></a>
+        </center>
+       </div>
+
+	<section class="mb-4">
+
+    <div class="container mt-3">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+        <div class="col-4 offset-4">
+            <center>
+        <h1 style="color:red">{% trans "Sign Up" %}</h1>
+
+        <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+        </center>
+
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          {{ form | crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <center>
+          <button class="btn btn-danger" type="submit">{% trans "Sign Up" %} &raquo;</button>
+        </center>
+        </form>
+
+       </div>
+         </div>               
+        </div>
+      </section>      
+
+
+</body>
+</html>

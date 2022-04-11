@@ -1,0 +1,91 @@
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% load crispy_forms_tags %}
+<html>
+<head>
+  <title>Sign In</title>
+   <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tooplate-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+ <!-- Pre Header -->
+    <div id="pre-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <span>It ain't that I'm questionin' you. To take part in any quiz.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+      <div class="container">
+        <center>
+        
+        <a  href="#"><img src="{% static 'images/R1.jpg' %}" alt="logo" height="80"></a>
+        </center>
+       </div> 
+ <section class="mb-4">
+
+    <div class="container mt-3">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+        <div class="col-4 offset-4">
+
+          <center><h1 style="color:red;">{% trans "Sign In" %}</h1>
+
+        {% get_providers as socialaccount_providers %}
+
+        {% if socialaccount_providers %}
+        <p>{% blocktrans with site.name as site_name %}Please sign in with one
+        of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+        for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+        <div class="socialaccount_ballot">
+
+          <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </ul>
+
+          <div class="login-or">{% trans 'or' %}</div>
+
+        </div>
+
+        {% include "socialaccount/snippets/login_extra.html" %}
+
+        {% else %}
+        <p>{% blocktrans %}If you have not created an account yet, then please
+        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+        {% endif %}
+
+        </center>
+
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+          {% csrf_token %}
+          {{ form | crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <center>
+          <a class="btn btn-secondary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          <button class="btn btn-danger " type="submit">{% trans "Sign In" %}</button></center>
+        </form>
+      </div>
+     </div>               
+    </div>
+  </section>
+<!-- //customers-6-->
+
+
+
+
+</body>
+</html>

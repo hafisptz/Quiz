@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Talent View</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{% static 'css/templatemo-style.css' %}"  rel="stylesheet" />
+	<style type="text/css">
+		.instruct{
+			background-color: white;
+			font-variant: small-caps;
+			height: 200px;
+			color: red;
+			font-family: Bernard MT;
+		}
+		.alignleft {
+					float: left;
+					color: red;
+					}
+		.alignright {
+					float: right;
+					color: red;
+					}
+						a {
+				  text-decoration: none;
+				  display: inline-block;
+				  padding: 8px 16px;
+				}
+
+				a:hover {
+				  background-color: #ddd;
+				  color: black;
+				}
+
+				.previous {
+				  background-color: red;
+				  color: white;
+				}
+
+				.next {
+				  background-color: #04AA6D;
+				  color: white;
+				}
+
+				.round {
+				  border-radius: 50%;
+				}			
+						
+	</style>
+</head>
+<body>
+	<div>
+
+
+		
+		
+			<div class="instruct">
+			
+					<center>
+					<img src="{% static 'images/R1.jpg' %}" alt="Logo" class=""  height="75" /> 
+					
+						<h1 class="tm-site-title">{{item.name}} Quiz</h1>
+						<br>
+					</center> 
+
+							<div id="textbox">
+  											<p class="alignleft">No.of Questions: {{ item.no_of_questions }}</p>
+  											<p class="alignright">Test total mark: {{ item.total_mark }}</p>
+							</div>
+		
+
+			
+
+			</div>
+
+
+			<div class="col-md-6 col-12 ">
+				
+			<div style="margin-left: 20px;">
+
+				<br>
+				<h2>Basic Instructions for Online Examinations</h2>
+					<ul type="square">
+						<li>The examination will comprise of Objective type Multiple Choice Questions (MCQs)</li>
+						<li>All questions are compulsory and each carries {{ item.get_question_mark }} mark. </li>
+						<li>The total number of questions, duration of examination, will be different based on 
+							the course, the detail is available on your screen.</li>
+						<li>There will be NO NEGATIVE MARKING for the wrong answers.</li>
+					
+					</ul>
+					<h2>Information & Instructions</h2>
+					<br>
+					<ul type="square">
+						<li>The examination does not require using any paper, pen, pencil and calculator.</li>
+						<li> Every student will take the examination on a Laptop/Desktop/Smart Phone</li>
+						<li>On computer screen every student will be given objective type type Multiple Choice 
+							Questions (MCQs).</li>
+						<li>Each student will get questions and answers in different order selected randomly 
+							from a fixed Question Databank.</li>
+						<li>The students just need to click on the Right Choice / Correct option from the 
+							multiple choices /options given with each question. For Multiple Choice Questions, 
+								each question has four options, and the candidate has to click the appropriate 
+							option.
+						</li>
+					</ul>
+			</div>
+
+			</div><br>
+
+
+			<center>
+				
+			<a href="{% url 'home' %}" class="previous">&laquo; Previous</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="{{ item.get_absolute_test_object_create_url }}" class="next">Start Test &raquo;</a>
+
+
+			</center>
+
+
+					
+		
+	</div>
+
+
+
+
+</body>
+</html> 
